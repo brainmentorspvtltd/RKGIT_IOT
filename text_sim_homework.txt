@@ -1,0 +1,23 @@
+Text Similarity
+text_1 = "Python is an interpreted, object-oriented, high-level programming language with dynamic semantics developed by Guido van Rossum. It was originally released in 1991. Designed to be easy as well as fun, the name "Python" is a nod to the British comedy group Monty Python. Python has a reputation as a beginner-friendly language, replacing Java as the most widely used introductory language because it handles much of the complexity for the user, allowing beginners to focus on fully grasping programming concepts rather than minute details."
+
+text_2 = "Python has become one of the most popular programming languages in the world in recent years. It's used in everything from machine learning to building websites and software testing. It can be used by developers and non-developers alike. Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis. Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn’t specialized for any specific problems. This versatility, along with its beginner-friendliness, has made it one of the most-used programming languages today."
+
+1. Tokenization - split the text into individual words
+s = "hello how are you"
+["hello","how","are","you"]
+
+2. Remove Stopwords - is, am, are, the, of, by, and...
+["hello","how","you"]
+
+3. Convert into set and find jaccard score
+
+
+
+
+
+
+
+
+
+

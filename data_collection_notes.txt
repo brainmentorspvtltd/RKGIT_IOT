@@ -1,0 +1,64 @@
+Data Collections
+- Strings
+	- collection of characters, symbols, letters...
+	- represented by '...', "...", '''...''', """..."""
+	- they are immutable (cannot be modified)
+	- internally strings are character array
+		- example : str = "hello"
+		- internally : {'h','e','l','l','o'}
+
+- List
+	- collection of any type of data
+	- they are mutable
+	- represented by [...]
+	- example : data = ["ram",67.66,[...]]
+
+- Tuples
+	- similar to list but immutable
+	- represented by (...)
+	- example : data = (4,4,7,8)
+
+- Dictionary
+	- collection of data in key and value pair
+	- example : {"name" : "Ram", "marks" : 93.55}
+
+- Sets & Frozen Sets
+	- collection of unique and unordered data
+	- example : {4,5,8,89,2}
+	- Frozen Set : immutable version of set
+============================================
+- Strings
+	- collection of characters, symbols, letters...
+	- represented by '...', "...", '''...''', """..."""
+	- they are immutable (cannot be modified)
+	- internally strings are character array
+		- example : str = "hello"
+		- internally : {'h','e','l','l','o'}
+
+Indexing
+Slicing
+Methods
+
+
+List Comprehension
+
+Dictionary
+
+Recommendation System
+- Item based
+- User based
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
