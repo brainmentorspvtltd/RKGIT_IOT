@@ -1,49 +1,10 @@
 import pygame, random
+from Constants import *
+from Player import *
+from Enemy import *
 pygame.init()
 
-SIZE = WIDTH, HEIGHT = 1200, 700
 SCREEN = pygame.display.set_mode(SIZE)
-
-WHITE = 255,255,255
-BLACK = 0,0,0
-RED = 255,0,0
-
-
-# inherit Sprite class of pygame
-class Player(pygame.sprite.Sprite):
-    def __init__(self):
-        # calling parent class constructor
-        super(Player, self).__init__()
-        self.width = 50
-        self.height = 50
-        self.image = pygame.Surface((self.width, self.height))
-        self.image.fill(RED)
-        self.rect = self.image.get_rect()
-        self.rect.x = WIDTH/2 - self.width/2
-        self.rect.y = HEIGHT - self.height - 10
-        self.SPEED = 1
-        self.moveX = 0
-
-    def update(self):
-        keyPressed = pygame.key.get_pressed()
-        if keyPressed[pygame.K_RIGHT]:
-            self.moveX = self.SPEED
-        elif keyPressed[pygame.K_LEFT]:
-            self.moveX = -self.SPEED
-        else:
-            self.moveX = 0
-
-        self.rect.x += self.moveX
-
-class Enemy:
-    def __init__(self):
-        pass
-
-
-class Bullet:
-    def __init__(self):
-        pass
-
 
 sprite_group = pygame.sprite.Group()
 player = Player()
@@ -52,13 +13,53 @@ sprite_group.add(player)
 playerGroup = pygame.sprite.Group()
 playerGroup.add(player)
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+enemyGroup = pygame.sprite.Group()
+num_enemy = 20
+for i in range(num_enemy):
+    enemy = Enemy()
+    sprite_group.add(enemy)
+    enemyGroup.add(enemy)
 
-    SCREEN.fill(BLACK)
-    sprite_group.draw(SCREEN)
-    sprite_group.update()
-    pygame.display.flip()
+bulletGroup = pygame.sprite.Group()
+
+def fireBullet():
+    bullet = Bullet(player.rect.x + player.width // 2, player.rect.y)
+    sprite_group.add(bullet)
+    bulletGroup.add(bullet)
+
+
+def showHealth():
+    playerHealth = player.playerHealth
+    pygame.draw.rect(SCREEN, WHITE, (10, 10, playerHealth, 30))
+    font = pygame.font.SysFont(None, 30)
+    text = font.render("Health : {}".format(playerHealth), True, GREEN)
+    SCREEN.blit(text, (240, 20))
+
+def main():
+    clock = pygame.time.Clock()
+    FPS = 60
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    fireBullet()
+
+        pygame.sprite.groupcollide(enemyGroup, bulletGroup, True, True)
+        hit = pygame.sprite.groupcollide(enemyGroup, playerGroup, True, False)
+        if hit:
+            player.playerHealth -= 20
+
+        SCREEN.fill(BLACK)
+
+        showHealth()
+        sprite_group.draw(SCREEN)
+        sprite_group.update()
+        pygame.display.flip()
+        clock.tick(FPS)
+
+main()
