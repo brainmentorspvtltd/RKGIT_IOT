@@ -35,6 +35,8 @@ def main():
         SCREEN.blit(bgImage, (0, -120))
 
         if pygame.sprite.groupcollide(hulkSprite, thorSprite, False, False):
+            if hulk.isAttacking:
+                thor.currentMove = HIT
             print("Collision Detection")
             hulk.moveX = False
             hulk.SPEED = 0
@@ -44,4 +46,4 @@ def main():
         pygame.display.flip()
         clock.tick(FPS)
 
-main()
+# main()

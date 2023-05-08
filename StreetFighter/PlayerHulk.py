@@ -28,6 +28,7 @@ class Hulk(pygame.sprite.Sprite):
         self.SPEED = 40
         self.move = 0
         self.index = 0
+        self.isAttacking = False
 
 
     def update(self):
@@ -42,6 +43,7 @@ class Hulk(pygame.sprite.Sprite):
             self.move = -self.SPEED
             self.showWalking()
         elif keypressed[pygame.K_z]:
+            self.isAttacking = True
             self.showPunch()
         else:
             self.move = 0
@@ -95,6 +97,7 @@ class Hulk(pygame.sprite.Sprite):
         self.punchFrames.append(self.image)
 
     def showIdle(self):
+        self.isAttacking = False
         if self.index >= len(self.idleFrames):
             self.index = 0
         self.image = self.idleFrames[self.index]
@@ -102,6 +105,7 @@ class Hulk(pygame.sprite.Sprite):
         self.index += 1
 
     def showWalking(self):
+        self.isAttacking = False
         if self.index >= len(self.walkingFrames):
             self.index = 0
         self.image = self.walkingFrames[self.index]
